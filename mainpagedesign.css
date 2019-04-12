@@ -1,0 +1,158 @@
+/*User input design*/
+.userinput{
+  margin-top:10px;
+  position:relative;
+  left: 30%;
+  width: 40%;
+
+}
+/*Postioning whole post*/
+.wholepost{
+  background-color: red;
+  margin-top:10px;
+  position:relative;
+  left: 30%;
+  width: 40%;
+}
+/*Positioning all buttons*/
+.likebuttons{
+  margin-top: 2px;
+  background-color: black;
+  border-radius: 2px;
+}
+/*button on hover color change*/
+
+.likebuttons button:hover{
+  color:red;
+}
+/* color implementation of buttons*/
+
+.likebuttons button{
+
+margin-right: 10%;
+position:relative;
+left: 10%;
+
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 12px 16px; /* Some padding */
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+
+}
+
+
+/*Posts system*/
+ .posts{
+   border : rounded;
+   background-color: black;
+   box-shadow: 0 1px 1px black inset, 0 0 8px #d9534f;
+padding: 10px;
+color:white;
+}
+/*Glow for forms*/
+.form-control:focus {
+  border-color: #d9534f;
+   box-shadow: 0 1px 1px #d9534f inset, 0 0 8px #d9534f;
+   outline: 0 none;
+
+}
+
+/* The side navigation menu */
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+ 
+  background-color: black;
+  color: white;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+
+
+/*Centering sidebar text*/
+
+.sidebar .sidequeries small{
+  margin-left: 25%;
+
+}
+
+/*Side bar queries*/
+.sidebar .sidequeries{
+  width:90%;
+  margin-left:5%;
+  display: block;
+  color: white;
+  position: relative;
+  top: 3%;
+margin-top: 5px;
+  padding: 2px;
+  padding-right: 0;
+
+}
+.navbar .searchform{
+  position: relative;
+  right:30%;
+}
+/* Sidebar links */
+.sidebar a{
+  display: block;
+  color: black;
+  position: relative;
+  top: 10%;
+  padding: 16px;
+  text-decoration: none;
+}
+
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+
+
+
+
+  .sidebar .sidequeries small{
+    position:relative;
+    left:40%;
+
+  }
+
+
+
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+
+
+
+  .sidebar .sidequeries small{
+    position:relative;
+    left:40%;
+
+  }
+
+
+}

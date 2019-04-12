@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="./mainpagedesign.css">
+  <title>Bootstrap Example</title>
+</head>
+
+
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar bg-dark navbar-sticky-top">
+    <a class="mx-auto ml-md-0 text-xs-centernavbar-brand text-white"><h2 class="mt-2 ">Scossip</h2></a>
+<!--search bar -->
+      <form class="form-inline searchform">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+      </form>
+
+
+</nav>
+<!--Title-->
+  <h1 class="text-center mt-2 pb-2 pt-3 col-sm-12  text-danger">Please enter your details.</h1>
+
+<!---Forms-->
+
+
+
+  <form class = " pt-3 container " id="centered">
+
+
+    <div class="row">
+    <div class="col">
+      <input id="FirstName" type="text" class="form-control" placeholder="First name" onchange="checkFirstName()">
+    </div>
+    <div class="col">
+      <input id="LastName" type="text" class="form-control" placeholder="Last name" onchange="checkLastName()">
+    </div>
+  </div>
+
+  <div class="row pt-4">
+  <div class="col my-auto ">
+     <input id="Password" type="password" class="form-control input-md"  placeholder="Password" onchange="checkPassword()" /> </div>
+  <div class="col">
+    <input id="ConfirmPassword" type="password" class="form-control input-md" placeholder="Confirm password" onchange="checkConpass()"/>
+  </div>
+  </div>
+
+
+
+        <div class="row pt-4">
+        <div class="col ">
+            <input id="Email" type="email" class="form-control input-md" aria-describedby="emailHelp" placeholder="Enter email" onchange="checkEmail()"/>
+ 
+  </div>
+        <div class="col">
+          <input  id = "Age" type="number" class="form-control input-md"   max="85" min="10" placeholder="Age" onchange="checkAge()"/>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class=" input-group-md form-group pt-2">
+       <label for="sel1 ">Which Campus are you located at?</label>
+        <select id = "sell"  class="form-control ">
+            <option value = ""></option>
+            <option value = "University of Western Australia">University of Western Australia</option>
+            <option value = "Curtin University">Curtin University</option>
+            <option value = "Edith Cowan University">Edith Cowan University</option>
+            <option value = "Murdoch University">Murdoch University</option>
+       </select>
+      </div>
+
+
+
+
+
+
+
+
+
+        <div class="form-group pb-3">
+    <label for="exampleTextarea">Give students a brief description of yourself. <small> <small>(will be shown publicly)</small> </small></label>
+    <textarea class="form-control input-md" id="exampleTextarea" rows="3" ></textarea>
+  </div>
+
+
+
+<button type="button" class="btn btn-danger mt-0 mt-sm-3 mb-3"  onclick="checkEmail();checkFirstName();checkLastName();checkPassword();checkConpass();checkCampus();checkAge();">Sign Up</button>
+
+        </form>
+
+<br>
+
+
+
+
+<!--Footer-->
+<!--Footer-->
+
+<footer class="bg-dark  text-center footertxt mt-5 pb-2 pt-3" >
+<h2 class = "text-white">Scossip</h2>
+</footer>
+
+
+
+
+
+
+  <script type="text/javascript" src="checking.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
