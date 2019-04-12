@@ -65,7 +65,6 @@ function checkAll() {
     var value2 =  document.getElementById("LastName").value;
     var email = document.getElementById("Email").value;
     var age = document.getElementById("Age").value;
-    var campus = document.getElementById("sell").value;
     var ConPass = document.getElementById("ConfirmPassword").value;
     var password = document.getElementById("Password").value;
     if (age.length ==0 || campus.length == 0 || value1.length == 0 || value2.length == 0 || email.length == 0 || ConPass.length == 0 || password.length == 0) {
