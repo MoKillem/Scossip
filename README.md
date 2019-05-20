@@ -4,13 +4,13 @@ An interactive website connecting users across campus to a gossip website
 ## Getting Started
 
 Activate the python virtual environment:
+
+
 how to launch from local host:
 run the python "run.py" file
 
-`$source virtual-environment/bin/activate`
-
 To run the app:
-`oython run.py`
+`python run.py`
 
 To stop the app:
 `^C`
@@ -19,6 +19,27 @@ To stop the app:
 ### Prerequisites
 
 Requires python3, flask, sqlite
+
+## requirements
+flask
+
+flask_sqlalchemy
+
+flask_bcrypt
+
+flask_login
+
+datetime
+
+flask_wtf
+
+wtforms
+
+flask_admin
+
+
+
+via localhost
 
 
 ### Installing
@@ -44,9 +65,7 @@ A few tests now:
 
 tests are in the test.py file. run the file in terminal
 
-## Deployment
 
-via localhost
 
 ## Built With
 
