@@ -1,74 +1,123 @@
+
+/*Welcome*/
+.welcome{
+  left:500px;
+}
+/*Hovering of post buttons */
+.info_hov:hover{
+color:#17a2b8;
+
+
+}
+.buttonPost{
+  margin-top:10px;
+  margin-bottom: 10px;
+  position:relative;
+  left: 30%;
+ 
+
+
+}
+/*Suppressing Decorations*/
+ a:hover{
+  text-decoration: none;
+}
+
+.mainLink:hover{
+  color: rgb(255, 221, 228);
+}
+
+
+
+
+
+/*Title Input System*/
+.titleinput{
+  display: block;
+  line-height: 50%;
+  margin-top:10px;
+  padding-top:10px;
+  position:relative;
+  left: 30%;
+  width: 40%;
+}
 /*User input design*/
 .userinput{
   margin-top:10px;
+  margin-bottom: 10px;
   position:relative;
   left: 30%;
   width: 40%;
-
+  padding-top:1px;
+  padding-bottom: 50px;
 }
 /*Postioning whole post*/
 .wholepost{
-  background-color: red;
-  margin-top:10px;
+    margin-top:10px;
   position:relative;
   left: 30%;
   width: 40%;
+}
+/*Positioning Title */
+.titleForPost{
+  margin-top: 20px;
+  color:#17a2b8
+ 
 }
 /*Positioning all buttons*/
 .likebuttons{
   margin-top: 2px;
-  background-color: black;
+  background-color:#f8f9fa;
   border-radius: 2px;
+  position:relative;
 }
 /*button on hover color change*/
 
 .likebuttons button:hover{
-  color:red;
+  color:#97a0f0;
 }
 /* color implementation of buttons*/
 
 .likebuttons button{
 
-margin-right: 10%;
-position:relative;
-left: 10%;
-
+  
   border: none; /* Remove borders */
-  color: white; /* White text */
+  color: 138a9c; /* White text */
   padding: 12px 16px; /* Some padding */
-  font-size: 16px; /* Set a font size */
+  font-size: 16px;/* Set a font size */
   cursor: pointer; /* Mouse pointer on hover */
-
+  position:relative;
+  
 }
 
 
 /*Posts system*/
  .posts{
-   border : rounded;
-   background-color: black;
-   box-shadow: 0 1px 1px black inset, 0 0 8px #d9534f;
+   border:#138a9c solid 1px;
+   background-color: #f8f9fa;
 padding: 10px;
-color:white;
+color:#138a9c;
 }
 /*Glow for forms*/
 .form-control:focus {
-  border-color: #d9534f;
-   box-shadow: 0 1px 1px #d9534f inset, 0 0 8px #d9534f;
+  border-color: #9de5f0 ;
+   box-shadow: 0 1px 1px  #9de5f0  inset, 0 0 3px #1bbdd6  ;
    outline: 0 none;
 
 }
 
+
 /* The side navigation menu */
 .sidebar {
-  margin: 0;
-  padding: 0;
-  width: 200px;
- 
-  background-color: black;
-  color: white;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 150px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #f8f9fa ;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  
 }
 
 
@@ -82,10 +131,10 @@ color:white;
 
 /*Side bar queries*/
 .sidebar .sidequeries{
+  color:#17a2b8;
   width:90%;
   margin-left:5%;
   display: block;
-  color: white;
   position: relative;
   top: 3%;
 margin-top: 5px;
@@ -93,25 +142,43 @@ margin-top: 5px;
   padding-right: 0;
 
 }
-.navbar .searchform{
-  position: relative;
-  right:30%;
+/*NavBar Relevent */
+.navbar{
+  background-color:  #17a2b8;
+
+
+
 }
+
 /* Sidebar links */
 .sidebar a{
+  font-weight: 200%;
   display: block;
-  color: black;
+  color: #17a2b8 ;
   position: relative;
   top: 10%;
   padding: 16px;
-  text-decoration: none;
 }
 
 
+.info-sys {
+  border: 2px solid white;
+  background-color: #97a0f0;
+  color: white;
+  cursor: pointer;
+}
+
+.info-sys:hover{
+  border: 2px solid white;
+  background-color: #17a2b8 ;
+  color: white;
+  cursor: pointer;
+
+}
 /* Links on mouse-over */
 .sidebar a:hover:not(.active) {
-  background-color: #555;
-  color: white;
+  background-color:#97a0f0;
+  color: #ffffff;
 }
 
 

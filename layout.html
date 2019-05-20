@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mainpagedesign.css') }}">
+    <title>main</title>
+  </head>
+  <body>
+
+    <!-- Navbar -->
+    <nav class="navbar sticky-top">
+      
+      <a class="text-white decorSuppress" href="{{ url_for('mainpage') }}" ><h2 class="mt-2 mainLink">Scossip</h2></a>
+<!--search bar -->
+
+{% if current_user.is_authenticated %}
+{% block searchbar%}
+        <form class="form-inline" novalidate="novalidate"  method="POST" action="{{ url_for('search') }}">
+            {{Se.csrf_token}}
+            {% if Se.keywords.errors %}
+            {{ Se.keywords(class="form-control mr-sm-2 is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in Se.keywords.errors %}
+                <span> {{ error }} </span>
+              {% endfor %}
+            </div>
+          {% else %}
+          {{ Se.keywords(class="form-control mr-sm-2", placeholder="Searching for ...?") }}
+          {% endif %}
+          {{ Se.search(class="btn btn-outline-light my-2 my-sm-0")}}
+        </form>
+        {%endblock%}
+
+      <ul class="nav mt-3 navbar-right pr-2 pb-2">
+        <li class ="nav-item ">
+            <a class = "text-white ml-3" href="{{ url_for('account') }}"><span class = "mainLink">Account</span></a>
+            <a class = "text-white ml-3" href="{{ url_for('logout') }}"><span class = "mainLink">Log out</span></a>
+          {% else %}
+          <div class ="float-right">
+            <a class = "text-white mr-3" href ="#" data-toggle="modal" data-target="#exampleModal"><span class = "mainLink"></span>Log in</a>
+            <a class = "text-white" href="{{ url_for('signup') }}"><span class = "mainLink">Sign up</span></a>
+            </div>
+          {% endif %}
+        </li>
+
+    </ul>
+
+
+    </nav>
+    
+    {% block modal %}
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+          <!--Form information -->
+            <form novalidate="novalidate" method = "POST" action = "{{url_for('login')}}" id = "LoginForm">
+                {{form.csrf_token}}
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  {% if form.email.errors %}
+                  {{ form.email(class="form-control form-control-md is-invalid" ,placeholder="Enter Email") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.email.errors %}
+                      <span> {{ error }} </span>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  {{ form.email(class="form-control form-control-md" ,placeholder="Enter Email") }}
+                {% endif %}
+
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                      {% if form.password.errors %}                
+                  {{ form.password(class="form-control form-control-md is-invalid" ,placeholder="Enter Password") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.password.errors %}
+                      <span> {{ error }} </span>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  {{ form.password(class="form-control form-control-md" ,placeholder="Enter Password") }}
+                {% endif %}
+
+
+
+                </div>
+                <div class="form-check">
+                    {{ form.remember(class = "form-check-input") }}
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                {{ form.submit(class=" btn btn-outline-info mt-3 mb-2")}}
+              </form>
+              <!-- Flash errors-->
+              {% with messages = get_flashed_messages(category_filter=["loginError"]) %}
+              {% if messages %}
+               <ul class=flashes style="color : red;">
+               {% for message in messages %}
+                 <li>{{ message }}</li>
+               {% endfor %}
+               </ul>
+              
+                
+             {% endif %}
+           {% endwith %}
+<div class="mt-3">
+         Don't Have An Account? <a class="ml-2" href="{{ url_for('signup') }}">Sign up</a>
+        </div>
+      </div>
+  
+   
+      
+      
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+
+    <!--Right side Bar-->
+    <div class="sidebar">
+        <hr>
+      <h6 class = "pt-5 mt-5 text-center text-info"> View Top Posts <h6>
+      <hr>
+        <div class = "sidequeries">
+        <small class = "text-center">Start Date</small>
+        <input type='date' min='1899-01-01' max='2000-01-01' class ="  form-control mr-sm-2 sidequeries"></input>
+        </div>
+
+        <div class ="sidequeries">
+        <small>End Date</small>
+        <input type='date' min='1899-01-01' max='2000-01-01' class =" form-control mr-sm-2 sidequeries"></input>
+        <hr>
+        </div>
+        
+      <a href="{{ url_for('display_top', button = 'count') }}"><small>Most popular</small></a>
+      <a href="{{ url_for('display_top', button = 'likes') }}"><small>Most liked</small></a>
+      <a href="{{ url_for('display_top', button = 'shocks') }}"><small>Most shocking</small></a>
+      <a href="{{ url_for('display_top', button = 'laughs') }}"><small>Most Funny</small></a>
+      <a href="{{ url_for('display_top', button = 'comments') }}"><small>Most commented</small></a>
+
+    </div>
+    {% block post %}
+
+    
+    {% if current_user.is_authenticated %}
+    <h5 class = "titleinput text-info text-center pt-2 pb-4">Hi {{ current_user.username }} !</h5>
+
+    <form novalidate="novalidate" method = "POST" action = "{{url_for('new_post')}}" id = "centered">
+
+        {{Postingform.csrf_token}}
+        {% if Postingform.title.errors %}
+        {{ Postingform.title(class="form-control titleinput is-invalid", placeholder="Title?") }}
+        <div class="invalid-feedback">
+          {% for error in Postingform.title.errors %}
+            <span> {{ error }} </span>
+          {% endfor %}
+        </div>
+      {% else %}
+      {{ Postingform.title(class="form-control titleinput",placeholder="Title?") }}
+      {% endif %}
+     
+      <div class="mt-2">
+          {% if Postingform.content.errors %}
+          {{ Postingform.content(class="form-control userinput  is-invalid", placeholder =  "Whats the goss?") }}
+          <div class="invalid-feedback">
+            {% for error in Postingform.content.errors %}
+              <span> {{ error }} </span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ Postingform.content(class="form-control userinput", placeholder="Whats the goss?") }}
+          
+        {% endif %}
+    </div>
+
+    {{ Postingform.submitPost(class="userinput p-0 btn btn-outline-info ")}}
+
+      </form>
+      <hr width = "50%">
+
+         <!-- Flash errors-->
+         {% with messages = get_flashed_messages(category_filter=["loginError"]) %}
+         {% if messages %}
+          <ul class=flashes style="color : red;">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+          </ul>
+         
+           
+        {% endif %}
+      {% endwith %}
+      
+{% endif %}
+{% endblock %}
+
+<!---Posts -->
+
+{% block content %}
+
+
+{% endblock %}
+    <!-- BootStrap Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!--Login prompt-->
+    {% if not current_user.is_authenticated %}
+    <script type="text/javascript">
+      $(window).on('load',function(){
+          $('#exampleModal').modal('show');
+      });
+  </script>
+  {% endif %}
+  </body>
+</html></h1>

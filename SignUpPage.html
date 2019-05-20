@@ -4,46 +4,64 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="./mainpagedesign.css">
-  <title>Bootstrap Example</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='mainpagedesign.css') }}">
+  <title>Sign Up</title>
 </head>
 
 
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar bg-dark navbar-sticky-top">
-    <a class="mx-auto ml-md-0 text-xs-centernavbar-brand text-white"><h2 class="mt-2 ">Scossip</h2></a>
-<!--search bar -->
-      <form class="form-inline searchform">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
-      </form>
+  <nav class="navbar bg-info navbar-sticky-top">
+    <a class="mx-auto ml-md-0 text-xs-centernavbar-brand text-white" href = "{{ url_for('mainpage') }}"><h2 class="mt-2 ">Scossip</h2></a>
+  
 
 
 </nav>
 <!--Title-->
-  <h1 class="text-center mt-2 pb-1 pt-4 col-sm-12  text-danger">Please enter your details.
-    <p class="text-center mt-0.5 pb-0.5 pt-0.5 col-sm-12  text-danger">
+  <h1 class="text-center mt-2 pb-1 pt-4 col-sm-12  text-info">Please enter your details.
+    <p class="text-center mt-0.5 pb-0.5 pt-0.5 col-sm-12  text-info">
         <small><small><small><small> * Required fields </small></small></small></small>
       </p>
+      <p style="color:red"><small><small><small><small> {{ exist }} </small></small></small></small></p>
     </h1>
 
 <!---Forms-->
 
 
 
-  <form class = " pt-3 container " id="centered">
+  <form class = " pt-3 container " id="centered" method="POST" action="{{url_for('signup')}}">
 
-
+      {{ form.hidden_tag() }}
+      {{form.csrf_token}}
     <div class="row">
     <div class="col">
-        <small style="color: red">*</small> First Name : <small id = "sm1" style="color: red"> </small>
-        <input id="FirstName" type="text" class="form-control" placeholder="John" onchange="checkFirstName()" required>
+        <small style="color: red">*</small> First Name : 
+        {% if form.first.errors %}
+          {{ form.first(class="form-control form-control-md is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.first.errors %}
+              <span> {{ error }} </span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.first(class="form-control form-control-md") }}
+        {% endif %}
+        
     </div>
     <div class="col">
- <small style="color: red">*</small> Last Name: <small id = "sm2" style="color: red"> </small>
-        <input id="LastName" type="text" class="form-control" placeholder="Snow" onchange="checkLastName()" required>
+ <small style="color: red">*</small> Last Name: 
+ {% if form.last.errors %}
+ {{ form.last(class="form-control form-control-md is-invalid") }}
+ <div class="invalid-feedback">
+   {% for error in form.last.errors %}
+     <span> {{ error }} </span>
+   {% endfor %}
+ </div>
+{% else %}
+ {{ form.last(class="form-control form-control-md") }}
+{% endif %}
+
     </div>
   </div>
       
@@ -52,13 +70,31 @@
       <div class="row pt-4">
         <div class="col ">
         <small style="color: red">*</small> User Name: <small id = "sm3" style="color: red"> (6-20 digits with only letters and numbers)</small>
-            <input id="UserName" type="text" class="form-control"  placeholder="xxxxxx" onchange="checkUserName()" required/>
+        {% if form.username.errors %}
+          {{ form.username(class="form-control form-control-md is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.username.errors %}
+              <span> {{ error }} </span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.username(class="form-control form-control-md") }}
+        {% endif %}
  
   </div>
         <div class="col ">
-        <small style="color: red">*</small> Email: <small id = "sm4" style="color: red"> </small>
-            <input id="Email" type="email" class="form-control input-md" aria-describedby="emailHelp" placeholder="john.snow@gmail.com" onchange="checkEmail()" required/>
- 
+        <small style="color: red">*</small> Email:
+        {% if form.email.errors %}
+          {{ form.email(class="form-control form-control-md is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.email.errors %}
+              <span> {{ error }} </span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.email(class="form-control form-control-md") }}
+        {% endif %}
+        
   </div>
          
           </div>
@@ -68,68 +104,85 @@
   <div class="row pt-4">
   <div class="col my-auto ">
     <small style="color: red">*</small> Password: <small id = "sm5"style="color: red"> (8-20 digits with only letters and numbers) </small>
-      <input id="Password" type="password" class="form-control input-md"  placeholder="Password" onchange="checkPassword()" required/> </div>
+    {% if form.password.errors %}
+          {{ form.password(class="form-control form-control-md is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.password.errors %}
+              <span> {{ error }} </span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.password(class="form-control form-control-md") }}
+        {% endif %}
+         </div>
   <div class="col">
-    <small style="color: red">*</small> Confirm Password: <small id = "sm6" style="color: red"> </small>
-      <input id="ConfirmPassword" type="password" class="form-control input-md" placeholder="Confirm password" onchange="checkConpass()" required/>
-  </div>
-  </div>
-
-
-
- <div class="row pt-4">
+    <small style="color: red">*</small> Confirm Password:
+    {% if form.confirm.errors %}
+          {{ form.confirm(class="form-control form-control-md is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.confirm.errors %}
+              <span> {{ error }} </span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.confirm(class="form-control form-control-md") }}
+        {% endif %}
         
-        <div class="col">
-       <small style="color: red">*</small> Age: <small id = "sm7" style="color: red"> </small>
-            <input  id = "Age" type="number" class="form-control input-md"   max="85" min="10" placeholder="Age" onchange="checkAge()" required/>
+  </div>
+  </div>
+
+
+     <div class=" input-group-md form-group pt-4">
+        <small style="color: red">*</small> Which campus(Uni) are you located at? 
+       
+        {% if form.campus.errors %}
+        {{ form.campus(class="form-control form-control-md is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.campus.errors %}
+            <span> {{ error }} </span>
+          {% endfor %}
         </div>
-      <div class="col ">
-          </div>
-          </div>
-
-
-
-
-    <div class=" input-group-md form-group pt-4">
-       <small style="color: red">*</small>
-        <label for="sel1 ">       Which Campus are you located at?</label>  <small id = "sm8" style="color: red"> </small>
-        <select id = "sell"  class="form-control" onchange="checkCampus()">
-            <option value = ""></option>
-            <option value = "University of Western Australia">University of Western Australia</option>
-            <option value = "Curtin University">Curtin University</option>
-            <option value = "Edith Cowan University">Edith Cowan University</option>
-            <option value = "Murdoch University">Murdoch University</option>
-       </select>
+      {% else %}
+        {{ form.campus(class="form-control form-control-md") }}
+      {% endif %}
+      
       </div>
-
-
-
-
-
-
 
 
 
         <div class="form-group pb-3">
     <label for="exampleTextarea">Give students a brief description of yourself. <small>(Optional, will be shown publicly)</small></label>
-    <textarea class="form-control input-md" id="exampleTextarea" rows="3" ></textarea>
+    {% if form.description.errors %}
+        {{ form.description(class="form-control form-control-md is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.description.errors %}
+            <span> {{ error }} </span>
+          {% endfor %}
+        </div>
+      {% else %}
+        {{ form.description(class="form-control form-control-md") }}
+      {% endif %}
   </div>
 
-
-
-<button type="button" class="btn btn-danger mt-0 mt-sm-3 mb-3"  onclick="checkAll()">Sign Up</button>
+  {{ form.submit(class="btn btn-outline-info ")}}
 
         </form>
 
 <br>
 
+<div class="border-top pt-3 container">
+  
+    Already Have An Account? <a class="ml-2" href="{{ url_for('mainpage') }}">Log in</a>
+  
+
+</div>
 
 
 
 <!--Footer-->
 <!--Footer-->
 
-<footer class="bg-dark  text-center footertxt mt-5 pb-2 pt-3" >
+<footer class="bg-info  text-center footertxt mt-5 pb-2 pt-3" >
 <h2 class = "text-white">Scossip</h2>
 </footer>
 

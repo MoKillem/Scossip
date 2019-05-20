@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+{% for post in posts %}
+<div class = " wholepost mt-5">
+<div class = " posts border-dark rounded">
+
+<form class = "  mb-5 pt-3 container " novalidate="novalidate" id="post.id" method="POST" action="{{ url_for('reaction', post_id = post.id) }}">
+    {{form1.csrf_token}}
+<div class = "text-center ">
+    {% filter upper %}
+      <h6 class>{{ post.title }}</h6>
+    {% endfilter %}
+    <hr style = "border: 1px solid white;" width = 100%;>
+      <p>{{ post.content }}<p>
+</div>
+<hr style = "border: 1px solid white;" width = 100%;>
+
+{% if  current_user.is_authenticated %}
+<div class = " likebuttons ml-5 text-center">
+  {{ form1.like(class="btn btn-outline-danger mr-5")}} {{ post.likes }}
+  {{ form1.shocked(class="btn btn-outline-danger mr-5")}} {{ post.shocks }}
+  {{ form1.laugh(class="btn btn-outline-danger mr-5")}} {{ post.laughs }}
+  {{ post.count }}
+    
+        </div>   
+        {% endif %}
+   
+  </form>
+
+</div>
+     
+</div>
+{% endfor %}
+
+{% endblock content %}

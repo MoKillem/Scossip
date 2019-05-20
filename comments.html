@@ -1,0 +1,58 @@
+
+    {% extends "layout.html" %}
+    {% block post %}
+    <div class = " wholepost mt-5 text-center">
+            <div class = " posts  rounded">
+  {% filter upper %}<p class = >{{posting.title}}</p>{% endfilter %} 
+            <hr style = "border: solid  #97a0f0 0.5px;" width = 70%; >
+            <p>{{posting.content}}</p>
+
+    </div>
+    <hr width = "100%">
+</div>
+    
+
+
+    <form class = " pt-3  pl-1 container " novalidate="novalidate" id="centered" method="POST" action="{{ url_for('comments',post_id = posT_id ) }}">
+              {{form.csrf_token}}
+                  <div class="form-group pb-3">
+
+
+                  <label for="exampleTextarea"></label>
+                  {% if form.content.errors %}
+                  {{ form.content(class="form-control userinput", placeholder="Whats the goss?") }}
+                  <div class="invalid-feedback">
+                        {% for error in form.content.errors %}
+                          <span> {{ error }} </span>
+                        {% endfor %}
+                      </div>
+                    {% else %}
+                      {{ form.content(class="form-control userinput", placeholder="What do you think??") }}
+
+                    {% endif %}
+                </div>
+              
+                {{ form.submitComm(class = "userinput p-0 btn btn-outline-info btn-light")}}
+
+              </form>
+
+                    {% for comment in posting.comments %}
+                    <div class = " wholepost mt-5 text-center">
+                    <div class = " posts  rounded">
+                    <p class = >{{comment.user.username}}</p>
+                    <hr style = "border: solid #138a9c 0.5px;" width = 70%;>
+                    <p>{{comment.content}}</p>
+                </div>
+    
+
+              </div>
+                    {% endfor %}
+                
+     {%endblock%}
+     {%block modal%}
+     {%endblock%}
+     {% block searchbar%}
+     {%endblock%}
+
+
+          

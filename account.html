@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block post %}
+
+{% if current_user.is_authenticated %}
+<div class = " wholepost mt-5">
+    <div class = " posts rounded">
+    
+    
+    <div class = "text-center ">
+          <h6 class>Details </h6>
+          <hr style = "border: solid #138a9c 0.5px;" width = 70%;>
+          <p class = "text-info"><b>First Name: </b>{{ current_user.first }} </p>
+          <p class = "text-info"><b>Last Name: </b>{{ current_user.last }} </p>
+          <p class = "text-info"><b>Username</b>: {{ current_user.username }} </p>
+          <p class = "text-info"><b>Email</b>: {{ current_user.email }} </p>
+    
+    
+    
+    </div>
+    </div>
+         
+    </div>
+   
+
+{% endif %}
+{% for post in posts %}
+<div class = " wholepost mt-5">
+<div class = " posts rounded">
+
+
+<div class = "text-center ">
+    {% filter upper %}
+      <h6 class>{{ post.title }} </h6>
+      {% endfilter %}
+          <a href="{{ url_for('delete_post', post_id = post.id) }} "><small class="mr-2 text-danger">Delete</small></a>
+          <small class="ml-2 text-info"><a href="">Update</a></small>    
+    
+   
+          <hr style = "border: solid #138a9c 0.5px;" width = 70%;>
+      <p>{{ post.content }}</p>
+ 
+
+
+
+</div>
+</div>
+     
+</div>
+{% endfor %}
+
+{% endblock post %}
