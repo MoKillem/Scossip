@@ -10,13 +10,11 @@ run the python "run.py" file
 `$source virtual-environment/bin/activate`
 
 To run the app:
-`$flask run`
+`oython run.py`
 
 To stop the app:
-`$^C`
+`^C`
 
-To exit the environment:
-`$deactivate`
 
 ### Prerequisites
 
