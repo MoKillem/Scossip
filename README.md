@@ -20,6 +20,9 @@ To stop the app:
 
 Requires python3, flask, sqlite
 
+
+##
+
 ## requirements
 flask
 
@@ -36,11 +39,6 @@ flask_wtf
 wtforms
 
 flask_admin
-
-
-
-via localhost
-
 
 ### Installing
 
@@ -106,12 +104,6 @@ viusal studio code
     -- delete any user posts along with its comments
     -- edit any user posts
 
-## Versioning
-
-## Authors
-
-Juliet (Suning Li)/ Moe
-
 
 ## devevopment
   
@@ -119,6 +111,12 @@ Juliet (Suning Li)/ Moe
   --Then we used javasctipt DOM to check the input tags to make sure all inputs for the signup page are in the corrent form, it will pop up alert window or show error messages if the inputs are not in the required format. (We realised that there is a better way using wtforms and jinja template to achieve this.
   -- after, we started developing the database with sqlalchemy.
   -- after, we tried out some simple flask  app routes and tried to merge the database with the app 
+  -- and step by step after that, we build all of the functionalities for the webpage.
+  -- we first implemeted new post function
+  -- Using API we achieved the three buttons voting function. and the comment function.
+  -- than we developed ranking system for each button and total reacts and total comments. 
+  -- after, we develop the search bar and the account page.
+  -- last, we made the admin page. 
  
 
 
